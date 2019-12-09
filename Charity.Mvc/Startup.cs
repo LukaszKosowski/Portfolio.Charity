@@ -2,26 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Charity.Mvc.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Charity.Mvc
 {
 	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
+    {
 
-		public IConfiguration Configuration { get; }
+        protected IConfigurationRoot Configuration;
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
+        public Startup()
+        {
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddJsonFile("appsettings.json");
+            Configuration = configurationBuilder.Build();
+        }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMvc();
+            services.AddDbContext<CharityContext>(builder => {
+                var connectionString = Configuration["ConnectionString"];
+                builder.UseSqlServer(connectionString);
+            });
+
+            services.AddMvc();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,14 +47,16 @@ namespace Charity.Mvc
 				app.UseExceptionHandler("/Home/Error");
 			}
 
-			app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles();
+            app.UseMvc();
 
-			app.UseMvc(routes =>
-			{
-				routes.MapRoute(
-					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
-			});
-		}
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
 	}
 }

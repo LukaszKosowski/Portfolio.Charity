@@ -20,3 +20,5 @@ C:\Git\Charity\Portfolio.Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc
 C:\Git\Charity\Portfolio.Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.AssemblyInfo.cs
 C:\Git\Charity\Portfolio.Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.dll
 C:\Git\Charity\Portfolio.Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.pdb
+C:\Git\Charity\Portfolio.Charity\Charity.Mvc\bin\Debug\netcoreapp2.0\appsettings.json
+C:\Git\Charity\Portfolio.Charity\Charity.Mvc\bin\Debug\netcoreapp2.0\appsettings.xml
