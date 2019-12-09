@@ -1,0 +1,11 @@
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\bin\Debug\netcoreapp2.0\Charity.Mvc.deps.json
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\bin\Debug\netcoreapp2.0\Charity.Mvc.runtimeconfig.json
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\bin\Debug\netcoreapp2.0\Charity.Mvc.runtimeconfig.dev.json
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\bin\Debug\netcoreapp2.0\Charity.Mvc.dll
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\bin\Debug\netcoreapp2.0\Charity.Mvc.pdb
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.csprojAssemblyReference.cache
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.csproj.CoreCompileInputs.cache
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.AssemblyInfoInputs.cache
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.AssemblyInfo.cs
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.dll
+I:\Git\PortfolioLab\PortfolioLabCharity\src\Charity\Charity.Mvc\obj\Debug\netcoreapp2.0\Charity.Mvc.pdb
