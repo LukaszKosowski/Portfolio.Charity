@@ -18,14 +18,23 @@ namespace Charity.Mvc
 
         public Startup()
         {
+            //var configurationBuilder = new ConfigurationBuilder();
+            //configurationBuilder.AddJsonFile("appsettings.json");
+            //Configuration = configurationBuilder.Build();
             var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddJsonFile("appsettings.json");
+            configurationBuilder.AddXmlFile("appsettings.xml");
             Configuration = configurationBuilder.Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
 		{
+            //services.AddDbContext<CharityContext>(builder =>
+            //{
+            //    var connectionString = Configuration.GetConnectionString("Data Source");
+            //    builder.UseSqlServer(connectionString);
+            //});
+
             services.AddDbContext<CharityContext>(builder => {
                 var connectionString = Configuration["ConnectionString"];
                 builder.UseSqlServer(connectionString);
