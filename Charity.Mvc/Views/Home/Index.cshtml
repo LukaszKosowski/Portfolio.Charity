@@ -1,2 +1,53 @@
 ﻿@model IList<Charity.Mvc.Models.Institution>
 
+
+@Html.Partial("_StatsSection")
+
+@Html.Partial("_StepsSection")
+
+@Html.Partial("_AboutUsSection")
+
+
+<section id="help" class="help">
+    <h2>Komu pomagamy?</h2>
+
+    <!-- SLIDE 1 -->
+    <div class="help--slides active" data-id="1">
+        <p>
+            W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują.
+        </p>
+
+        <ul class="help--slides-items">
+            @{
+                var counter = 0;
+                foreach (var institution in Model)
+                {
+                    counter++;
+
+                    if (counter % 2 != 0)
+                    {
+                        @:<li>
+                            <div class="col">
+                                <div class="title">Fundacja @institution.Name</div>
+                                <div class="subtitle">Cel i misja: @institution.Description</div>
+                            </div>
+
+                            if (Model.Count == counter)
+                            {<div class="col"></div>}
+                        }
+                        else
+                        {
+                            <div class="col">
+                                <div class="title">Fundacja @institution.Name</div>
+                                <div class="subtitle">Cel i misja: @institution.Description</div>
+                            </div>
+                        @:</li>
+                    }
+                }
+            }
+        </ul>
+
+    </div>
+
+</section>

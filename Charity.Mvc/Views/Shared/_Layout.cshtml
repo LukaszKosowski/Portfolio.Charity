@@ -19,22 +19,7 @@
 
     @Html.Partial("_Header")
 
-
-    <section id="renderBody" class="contact">
-
-        <div class="container">
-            @RenderBody();
-        </div>
-
-    </section>
-
-    @Html.Partial("_StatsSection")
-
-    @Html.Partial("_StepsSection")
-
-    @Html.Partial("_AboutUsSection")
-
-    @Html.Partial("_HelpSection")
+    @RenderBody();
 
     @Html.Partial("_Footer")
 
