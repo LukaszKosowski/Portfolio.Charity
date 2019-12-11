@@ -25,22 +25,28 @@ namespace Charity.Mvc.Services
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var institution = _context.Institutions.SingleOrDefault(i => i.Id == id);
+            if (institution == null)
+                return false;
+
+            _context.Institutions.Remove(institution);
+            return _context.SaveChanges() > 0;
         }
 
         public Institution Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Institutions.SingleOrDefault(i => i.Id == id);
         }
 
         public IList<Institution> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Institutions.ToList();
         }
 
         public bool Update(Institution institution)
         {
-            throw new NotImplementedException();
+            _context.Institutions.Update(institution);
+            return _context.SaveChanges() > 0;
         }
     }
 }

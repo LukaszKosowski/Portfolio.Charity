@@ -1,4 +1,6 @@
-﻿
+﻿@model IList<Charity.Mvc.Models.Institution>
+
+
 <section id="help" class="help">
     <h2>Komu pomagamy?</h2>
 
@@ -10,30 +12,36 @@
         </p>
 
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
+            @{
+                var counter = 0;
+                foreach (var institution in Model)
+                {
+                    counter++;
 
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
-            </li>
+                    if (counter % 2 != 0)
+                    {
+                        @:<li>
+                            <div class="col">
+                                <div class="title">Fundacja @institution.Name</div>
+                                <div class="subtitle">Cel i misja: @institution.Description</div>
+                            </div>
 
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
-            </li>
-
+                            @*if (Model.Count == counter)
+                            {<li><div class="col">
+                                <div class="title"></div>
+                                <div class="subtitle"></div>
+                            </div></li>}*@
+                    }
+                    else
+                    {
+                        <div class="col">
+                            <div class="title">Fundacja @institution.Name</div>
+                            <div class="subtitle">Cel i misja: @institution.Description</div>
+                        </div>
+                        @:</li>
+                    }
+                }
+            }
         </ul>
 
     </div>

@@ -6,7 +6,7 @@ using Charity.Mvc.Models;
 
 namespace Charity.Mvc.Services.Interfaces
 {
-    interface IDonationService
+    public interface IDonationService
     {
         bool Create(Donation donation);
         bool Delete(int id);

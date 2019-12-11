@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Charity.Mvc.Services;
+using Charity.Mvc.Context;
+using Charity.Mvc.Services.Interfaces;
 
 namespace Charity.Mvc
 {
@@ -39,6 +42,8 @@ namespace Charity.Mvc
                 var connectionString = Configuration["ConnectionString"];
                 builder.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IInstitutionSerwice, InstitutionSerwice>();
 
             services.AddMvc();
 		}
