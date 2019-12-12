@@ -44,6 +44,7 @@ namespace Charity.Mvc
             });
 
             services.AddScoped<IInstitutionSerwice, InstitutionSerwice>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             services.AddMvc();
 		}
