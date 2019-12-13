@@ -1,4 +1,5 @@
-﻿@model IList<Charity.Mvc.Models.Institution>
+﻿
+@model Charity.Mvc.ViewModels.DonationViewModel
 
 <section class="form--steps">
     <div class="form--steps-instructions">
@@ -25,45 +26,18 @@
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox"
-                               name="categories"
-                               value="clothes-to-use" />
-                        <span class="checkbox"></span>
-                        <span class="description">ubrania, które nadają się do ponownego użycia</span>
-                    </label>
-                </div>
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox"
-                               name="categories"
-                               value="clothes-useless" />
-                        <span class="checkbox"></span>
-                        <span class="description">ubrania, do wyrzucenia</span>
-                    </label>
-                </div>
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="toys" />
-                        <span class="checkbox"></span>
-                        <span class="description">zabawki</span>
-                    </label>
-                </div>
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="books" />
-                        <span class="checkbox"></span>
-                        <span class="description">książki</span>
-                    </label>
-                </div>
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="other" />
-                        <span class="checkbox"></span>
-                        <span class="description">inne</span>
-                    </label>
-                </div>
+
+                @for (var i = 0; i < Model.Categories.Count; i++)
+                {
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input type="checkbox" value="Categories[i].Name" />
+                            <span class="checkbox"></span>
+                            <span class="description">@Model.Categories[i].Name</span>                            
+                        </label>
+                    </div>
+                }
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
@@ -86,6 +60,9 @@
             <!-- STEP 4 -->
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
+
+                <select asp-for="DonationInstitution" asp-items="Model.Instytucje"></select>
+
                 <div class="form-group form-group--checkbox">
                     <label>
                         <input type="radio" name="organization" value="old" />

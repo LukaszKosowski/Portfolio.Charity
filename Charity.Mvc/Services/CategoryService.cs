@@ -35,7 +35,7 @@ namespace Charity.Mvc.Services
 
         public IList<Category> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Categories.ToList();
         }
 
         public bool Update(Category reccategoryipe)

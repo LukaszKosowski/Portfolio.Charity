@@ -35,7 +35,7 @@ namespace Charity.Mvc.Services
 
         public IList<Donation> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Donations.ToList();
         }
 
         public bool Update(Donation donation)
