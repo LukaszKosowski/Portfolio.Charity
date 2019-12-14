@@ -91,7 +91,6 @@ abbr[title] {
   /* 1 */
   text-decoration: underline;
   /* 2 */
-  -webkit-text-decoration: underline dotted;
           text-decoration: underline dotted;
   /* 2 */
 }
@@ -649,7 +648,6 @@ form .form-group--checkbox .description .title {
 form .form-group--checkbox .description .subtitle {
   font-family: 'Merriweather', serif;
   font-weight: 300;
-  font-style: light;
   font-size: 1.2rem;
 }
 
@@ -763,7 +761,6 @@ form .form-section--columns {
 form .form-section--columns > div {
   padding-right: 20px;
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
           flex-grow: 1;
 }
 
@@ -827,20 +824,6 @@ form.form--contact textarea::-webkit-input-placeholder {
 }
 form.form--contact input:not([type="checkbox"]):not([type="radio"]):-ms-input-placeholder,
 form.form--contact textarea:-ms-input-placeholder {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  color: #3c3c3c;
-}
-form.form--contact input:not([type="checkbox"]):not([type="radio"])::-ms-input-placeholder,
-form.form--contact textarea::-ms-input-placeholder {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  color: #3c3c3c;
-}
-form.form--contact input:not([type="checkbox"]):not([type="radio"])::placeholder,
-form.form--contact textarea::placeholder {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -1475,7 +1458,6 @@ header nav ul li:last-of-type {
 .help--slides-items .col .subtitle {
   font-family: 'Merriweather', serif;
   font-weight: 300;
-  font-style: light;
   font-size: 1.2rem;
 }
 
@@ -1533,7 +1515,6 @@ footer .contact {
   width: 100%;
   padding-right: 30px;
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
           flex-grow: 1;
   display: -webkit-box;
   display: -ms-flexbox;

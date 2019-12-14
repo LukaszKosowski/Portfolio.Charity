@@ -8,7 +8,7 @@ namespace Charity.Mvc.Models
     public class Donation
     {
         public int Id { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public Category Categories { get; set; }
         public Institution Institutions { get; set; }
         public string Street { get; set; }

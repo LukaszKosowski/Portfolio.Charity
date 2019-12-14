@@ -13,7 +13,7 @@ namespace Charity.Mvc.ViewModels
         public List<Institution> Institutions { get; set; }
 
         public int DonationId { get; set; }
-        public string DonationQuantity { get; set; }
+        public int DonationQuantity { get; set; }
         public Category DonationCategory { get; set; }
         public Institution DonationInstitution { get; set; }
         public string DonationStreet { get; set; }
@@ -22,8 +22,17 @@ namespace Charity.Mvc.ViewModels
         public DateTime DonationPickUpDate { get; set; }
         public DateTime DonationPickUpTime { get; set; }
         public string DonationPickUpComment { get; set; }
+        
 
+        public List<CheckBoxModel> ChkItem { get; set; }
         public IEnumerable<SelectListItem> Instytucje { get; set; }
 
+    }
+
+    public class CheckBoxModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

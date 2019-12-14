@@ -40,7 +40,7 @@ namespace Charity.Mvc.Services
         }
 
         public bool Update(Category reccategoryipe)
-        {zzz
+        {
             throw new NotImplementedException();
         }
     }

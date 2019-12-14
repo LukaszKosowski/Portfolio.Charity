@@ -27,21 +27,37 @@
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                @for (var i = 0; i < Model.Categories.Count; i++)
+                @for(var i=0;i<Model.ChkItem.Count; i++)
                 {
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="checkbox" value="Categories[i].Name" />
-                            <span class="checkbox"></span>
-                            <span class="description">@Model.Categories[i].Name</span>                            
-                        </label>
-                    </div>
+                <div class="form-group form-group--checkbox">
+                    <label>
+                        <input asp-for="ChkItem[i].IsChecked"
+                               id="ChkItem@(Model.ChkItem[i].Id)"
+                               type="checkbox"
+                               value="@Model.ChkItem[i].IsChecked"
+                               checked="@Model.ChkItem[i].IsChecked" />
+                         <span class="checkbox"></span>
+                         <span class="description">@Model.ChkItem[i].Name</span>
+                    </label>
+                </div>
                 }
 
-                <div class="form-group form-group--buttons">
-                    <button type="button" class="btn next-step">Dalej</button>
-                </div>
-            </div>
+
+    @*@for (var i = 0; i < Model.Categories.Count; i++)
+    {
+        <div class="form-group form-group--checkbox">
+            <label>
+                <input type="checkbox" value="Categories[i].Name" />
+                <span class="checkbox"></span>
+                <span class="description">@Model.Categories[i].Name</span>
+            </label>
+        </div>
+    }*@
+
+    <div class="form-group form-group--buttons">
+        <button type="button" class="btn next-step">Dalej</button>
+    </div>
+</div>
             <!-- STEP 2 -->
             <div data-step="2">
                 <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
@@ -63,7 +79,7 @@
 
                 <select asp-for="DonationInstitution" asp-items="Model.Instytucje"></select>
 
-                <div class="form-group form-group--checkbox">
+                @*<div class="form-group form-group--checkbox">
                     <label>
                         <input type="radio" name="organization" value="old" />
                         <span class="checkbox radio"></span>
@@ -80,7 +96,7 @@
                     <label>
                         <input type="radio" name="organization" value="old" />
                         <span class="checkbox radio"></span>
-                        <span class="description">
+                        <span class="description" style="display:inline-block">
                             <div class="title">Fundacja “Dla dzieci"</div>
                             <div class="subtitle">
                                 Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
@@ -88,7 +104,7 @@
                             </div>
                         </span>
                     </label>
-                </div>
+                </div>*@
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>
@@ -147,8 +163,17 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text">4 worki ubrań w dobrym stanie dla dzieci</span>
+                                <span class="summary--text">4 worki</span>                                
                             </li>
+                                
+                                @foreach (var item in Model.ChkItem)
+                                {
+                                    if (item.IsChecked)
+                                    {
+                                        <li>@item.Name</li>
+                                    }
+                                }
+                            
                             <li>
                                 <span class="icon icon-hand"></span>
                                 <span class="summary--text">Dla fundacji "Mam marzenie" w Warszawie</span>

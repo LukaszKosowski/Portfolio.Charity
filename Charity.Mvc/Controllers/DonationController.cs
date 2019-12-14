@@ -24,9 +24,27 @@ namespace Charity.Mvc.Controllers
             _categoryService = categoryService;
             _donationService = donationService;
         }
+        public List<CheckBoxModel> ToCheckBox()
+        {
+
+            List<CheckBoxModel> chkItem = new List<CheckBoxModel>();
+            List<Category> CategoryList = _categoryService.GetAll().ToList();
+
+            for (int i = 0; i < CategoryList.Count; i++)
+            {
+                chkItem.Add(new CheckBoxModel()
+                {
+                    Id = CategoryList[i].Id,
+                    Name = CategoryList[i].Name,
+                    IsChecked = false
+                });
+            }
+            return chkItem;
+        }
         [HttpGet]
         public IActionResult Donate()
         {
+            List<Category> CategoryList = _categoryService.GetAll().ToList();            
             List<string> ListaKategorii = new List<string>();
 
             foreach(Institution c in _instytutionService.GetAll())
@@ -36,8 +54,9 @@ namespace Charity.Mvc.Controllers
 
             DonationViewModel donationViewModel = new DonationViewModel
             {
+                ChkItem = ToCheckBox(),
                 Categories = (List<Category>)_categoryService.GetAll(),
-                Institutions = _instytutionService.GetAll(),
+                Institutions = _instytutionService.GetAll().ToList(),
                 Instytucje = new SelectList(ListaKategorii)
             };
 
