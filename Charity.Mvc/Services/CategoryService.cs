@@ -9,6 +9,7 @@ using Charity.Mvc.Services.Interfaces;
 namespace Charity.Mvc.Services
 {
     public class CategoryService : ICategoryService
+        
     {
         private readonly CharityContext _context;
 
@@ -39,7 +40,7 @@ namespace Charity.Mvc.Services
         }
 
         public bool Update(Category reccategoryipe)
-        {
+        {zzz
             throw new NotImplementedException();
         }
     }

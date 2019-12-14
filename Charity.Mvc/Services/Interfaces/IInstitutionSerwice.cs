@@ -11,7 +11,7 @@ namespace Charity.Mvc.Services.Interfaces
         bool Create(Institution institution);
         bool Delete(int id);
         Institution Get(int id);
-        List<Institution> GetAll();
+        IList<Institution> GetAll();
         bool Update(Institution institution);
     }
 }

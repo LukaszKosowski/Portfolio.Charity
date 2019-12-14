@@ -38,7 +38,7 @@ namespace Charity.Mvc.Services
             return _context.Institutions.SingleOrDefault(i => i.Id == id);
         }
 
-        public List<Institution> GetAll()
+        public IList<Institution> GetAll()
         {
             return _context.Institutions.ToList();
         }
