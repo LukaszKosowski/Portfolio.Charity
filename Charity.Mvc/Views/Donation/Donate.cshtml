@@ -33,6 +33,7 @@
                     <label>
                         <input asp-for="ChkItem[i].IsChecked"
                                id="ChkItem@(Model.ChkItem[i].Id)"
+                               name="Category@(i)"
                                type="checkbox"
                                value="@Model.ChkItem[i].Name"
                                checked="@Model.ChkItem[i].IsChecked" />
@@ -169,10 +170,9 @@
                                 
                                 @foreach (var item in Model.ChkItem)
                                 {
-                                    if (item.IsChecked)
-                                    {
-                                        <li>@item.Name</li>
-                                    }
+                                    <li id="IfChecked@(item.Id)" style="visibility:hidden">
+                                        @item.Name
+                                    </li>
                                 }
                             
                             <li>
