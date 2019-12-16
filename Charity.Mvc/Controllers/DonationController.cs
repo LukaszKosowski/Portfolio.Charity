@@ -68,6 +68,10 @@ namespace Charity.Mvc.Controllers
         {
             // Create new Donation
 
+
+            //_donationService.Create(new Donation());
+
+
             return View();
         }
     }
