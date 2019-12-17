@@ -54,10 +54,11 @@ namespace Charity.Mvc.Controllers
 
             DonationViewModel donationViewModel = new DonationViewModel
             {
-                ChkItem = ToCheckBox(),
-                Categories = (List<Category>)_categoryService.GetAll(),
-                Institutions = _instytutionService.GetAll().ToList(),
-                Instytucje = new SelectList(ListaKategorii)
+                DonationQuantity = 42
+                //ChkItem = ToCheckBox(),
+                //Categories = (List<Category>)_categoryService.GetAll(),
+                //Institutions = _instytutionService.GetAll().ToList(),
+                //Instytucje = new SelectList(ListaKategorii)
             };
 
             return View(donationViewModel);
@@ -66,13 +67,13 @@ namespace Charity.Mvc.Controllers
         [HttpPost]
         public IActionResult Donate(DonationViewModel donationModelView)
         {
-            // Create new Donation
 
+            var x = donationModelView.DonationQuantity;
 
             //_donationService.Create(new Donation());
 
 
-            return View();
+            return View(donationModelView);
         }
     }
 }
