@@ -131,7 +131,8 @@
                     <div class="form-group form-group--inline">
                         <label>
                             Uwagi dla kuriera
-                            <textarea asp-for="DonationPickUpComment" name="DonationPickUpComment" rows="5"></textarea>
+                            <textarea id="_DonationPickUpComment" asp-for="DonationPickUpComment" name="DonationPickUpComment" rows="5"></textarea>
+                            
                         </label>
                     </div>
                 </div>
@@ -181,7 +182,7 @@
                             <ul>
                                 <li>13/12/2018</li>
                                 <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="commentLi"><script> document.getElementById("commentLi").innerText = "test";</script></li>
                             </ul>
                         </div>
                     </div>
