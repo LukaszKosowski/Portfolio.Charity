@@ -56,7 +56,7 @@ namespace Charity.Mvc.Controllers
                 DonationQuantity = 42,
                 ChkItem = ToCheckBox(),
                 Categories = (List<Category>)_categoryService.GetAll(),
-                Institutions = _instytutionService.GetAll().ToList(),
+                Institutions = _instytutionService.GetAll(),
                 Instytucje = new SelectList(ListaKategorii)
             };
 
@@ -72,7 +72,7 @@ namespace Charity.Mvc.Controllers
             //_donationService.Create(new Donation());
 
 
-            return View(donationModelView);
+            return View();
         }
     }
 }
