@@ -38,6 +38,11 @@ namespace Charity.Mvc.Services
             return _context.Institutions.SingleOrDefault(i => i.Id == id);
         }
 
+        public Institution Get(string name)
+        {
+            return _context.Institutions.SingleOrDefault(i => i.Name == name);
+        }
+
         public List<Institution> GetAll()
         {
             return _context.Institutions.ToList();

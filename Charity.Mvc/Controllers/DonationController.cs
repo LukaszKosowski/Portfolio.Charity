@@ -66,7 +66,18 @@ namespace Charity.Mvc.Controllers
         [HttpPost]
         public IActionResult Donate(DonationViewModel donationModelView)
         {
-
+            _donationService.Create(new Donation
+            {
+                Street = donationModelView.DonationStreet,
+                Quantity = donationModelView.DonationQuantity,                
+                City = donationModelView.DonationCity,
+                ZipCode = donationModelView.DonationZipCode,
+                PickUpDate = donationModelView.DonationPickUpDate,
+                PickUpTime = donationModelView.DonationPickUpTime,
+                PickUpComment = donationModelView.DonationPickUpComment,
+                Categories = null,
+                Institutions = _instytutionService.Get(donationModelView.DonationInstitutionName)
+            });
 
             var x = donationModelView.DonationQuantity;
 

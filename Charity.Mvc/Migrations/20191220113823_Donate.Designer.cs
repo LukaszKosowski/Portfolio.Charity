@@ -4,14 +4,16 @@ using Charity.Mvc.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Charity.Mvc.Migrations
 {
     [DbContext(typeof(CharityContext))]
-    partial class CharityContextModelSnapshot : ModelSnapshot
+    [Migration("20191220113823_Donate")]
+    partial class Donate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +41,7 @@ namespace Charity.Mvc.Migrations
 
                     b.Property<string>("City");
 
-                    b.Property<int?>("InstitutionsId");
+                    b.Property<int?>("InstitutionId");
 
                     b.Property<string>("PickUpComment");
 
@@ -57,7 +59,7 @@ namespace Charity.Mvc.Migrations
 
                     b.HasIndex("CategoriesId");
 
-                    b.HasIndex("InstitutionsId");
+                    b.HasIndex("InstitutionId");
 
                     b.ToTable("Donations");
                 });
@@ -82,9 +84,9 @@ namespace Charity.Mvc.Migrations
                         .WithMany()
                         .HasForeignKey("CategoriesId");
 
-                    b.HasOne("Charity.Mvc.Models.Institution", "Institutions")
+                    b.HasOne("Charity.Mvc.Models.Institution", "Institution")
                         .WithMany()
-                        .HasForeignKey("InstitutionsId");
+                        .HasForeignKey("InstitutionId");
                 });
 #pragma warning restore 612, 618
         }
