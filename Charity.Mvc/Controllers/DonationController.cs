@@ -67,6 +67,7 @@ namespace Charity.Mvc.Controllers
         public IActionResult Donate(DonationViewModel donationModelView)
         {
 
+
             var x = donationModelView.DonationQuantity;
 
             //_donationService.Create(new Donation());

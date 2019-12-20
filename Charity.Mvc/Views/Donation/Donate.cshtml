@@ -31,13 +31,13 @@
                 {
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="checkbox" asp-for="ChkItem[i].IsChecked" />
+                            <input type="checkbox" name="DonationCategoryName" value="@Model.ChkItem[i].Name" asp-for="ChkItem[i].IsChecked" />
 
                             <span class="checkbox"></span>
                             <span class="description">@Model.ChkItem[i].Name</span>
 
-                            <input type="hidden" asp-for="ChkItem[i].Id" />
-                            <input type="hidden" asp-for="ChkItem[i].Name" />
+                            @*<input type="hidden" value="@Model.ChkItem[i].Name" asp-for="@Model.ChkItem[i].Id" />
+                            <input type="hidden" value="@Model.ChkItem[i].Name" asp-for="@Model.ChkItem[i].Name" />*@
                         </label>
                     </div>
                 }
@@ -220,6 +220,8 @@
         var _donationQuantity = document.getElementById("_DonationQt");
         var Quantity = document.getElementById("_Quantity");
 
+        var AllCheckBoxes = document.querySelectorAll('input[type=checkbox][name="DonationCategoryName"]');
+
         summary.addEventListener("click", function (e) {
             date.innerText = _date.value;
             time.innerText = _time.value;
@@ -230,19 +232,30 @@
             zipCode.innerText = _zipCode.value;
             phone.innerText = _phone.value;
 
-            Quantity.innerText = "Liczba worków: " + _donationQuantity.value;
+            Quantity.innerText += "Liczba worków: " + _donationQuantity.value;
+
+            var CategoryResoult = "";
+            for (i = 0; i < AllCheckBoxes.length; i++) {
+                if (AllCheckBoxes[i].checked == true) {
+                    CategoryResoult += AllCheckBoxes[i].value + '\r\n';
+                }
+            }
+
+            Quantity.innerText += CategoryResoult;
         })
 
         var _Instytution = document.getElementById("_Instytution");
         var radios = document.querySelectorAll('input[type=radio][name="DonationInstitutionName"]');
 
         function changeHandler(event) {
-            _Instytution.innerText = this.value;
+            _Instytution.innerText = "Dla fundacji: " + this.value;
         }
 
         Array.prototype.forEach.call(radios, function (radio) {
             radio.addEventListener('click', changeHandler);
         })
+
+        
     })
 </script>
 
