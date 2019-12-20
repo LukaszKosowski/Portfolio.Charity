@@ -27,32 +27,32 @@
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                @for(var i=0;i<Model.ChkItem.Count; i++)
+                @for (var i = 0; i < Model.ChkItem.Count; i++)
                 {
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" asp-for="ChkItem[i].IsChecked" />
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input type="checkbox" asp-for="ChkItem[i].IsChecked" />
 
-                        <span class="checkbox"></span>
-                        <span class="description">@Model.ChkItem[i].Name</span>
+                            <span class="checkbox"></span>
+                            <span class="description">@Model.ChkItem[i].Name</span>
 
-                        <input type="hidden" asp-for="ChkItem[i].Id" />
-                        <input type="hidden" asp-for="ChkItem[i].Name" />
-                    </label>
-                </div>
+                            <input type="hidden" asp-for="ChkItem[i].Id" />
+                            <input type="hidden" asp-for="ChkItem[i].Name" />
+                        </label>
+                    </div>
                 }
 
 
                 @*@for (var i = 0; i < Model.Categories.Count; i++)
-            {
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" value="Categories[i].Name" />
-                        <span class="checkbox"></span>
-                        <span class="description">@Model.Categories[i].Name</span>
-                    </label>
-                </div>
-            }*@
+                    {
+                        <div class="form-group form-group--checkbox">
+                            <label>
+                                <input type="checkbox" value="Categories[i].Name" />
+                                <span class="checkbox"></span>
+                                <span class="description">@Model.Categories[i].Name</span>
+                            </label>
+                        </div>
+                    }*@
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -64,7 +64,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <input asp-for="DonationQuantity" type="number" value="@Model.DonationQuantity" name="DonationQuantity" step="1" min="1" />
+                        <input id="_DonationQt" asp-for="DonationQuantity" type="number" value="@Model.DonationQuantity" name="DonationQuantity" step="1" min="1" />
                     </label>
                 </div>
                 <div class="form-group form-group--buttons">
@@ -82,14 +82,14 @@
 
                 @for (var i = 0; i < @Model.Institutions.Count(); i++)
                 {
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input asp-for="DonationInstitutionName" type="radio"
-                                     name="DonationInstitutionName" value="@Model.Institutions[i].Name" />
-                        <span class="checkbox"></span>
-                        <span class="description">@Model.Institutions[i].Name</span>
-                    </label>
-                </div>
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input asp-for="DonationInstitutionName" type="radio"
+                                   name="DonationInstitutionName" value="@Model.Institutions[i].Name" />
+                            <span class="checkbox"></span>
+                            <span class="description">@Model.Institutions[i].Name</span>
+                        </label>
+                    </div>
                 }
 
                 <div class="form-group form-group--buttons">
@@ -101,42 +101,42 @@
             <div data-step="4">
                 <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
                 <div class="form-section form-section--columns">
-                <div class="form-section--column">
-                    <h4>Adres odbioru</h4>
-                    <div class="form-group form-group--inline">
-                        <label> Ulica <input asp-for="DonationStreet" type="text" name="DonationStreet" /> </label>
+                    <div class="form-section--column">
+                        <h4>Adres odbioru</h4>
+                        <div class="form-group form-group--inline">
+                            <label> Ulica <input id="_DonationStreet" asp-for="DonationStreet" type="text" name="DonationStreet" /> </label>
+                        </div>
+                        <div class="form-group form-group--inline">
+                            <label> Miasto <input id="_DonationCity" asp-for="DonationCity" type="text" name="DonationCity" /> </label>
+                        </div>
+                        <div class="form-group form-group--inline">
+                            <label>
+                                Kod pocztowy <input id="_DonationZipCode" asp-for="DonationZipCode" type="text" name="DonationZipCode" />
+                            </label>
+                        </div>
+                        <div class="form-group form-group--inline">
+                            <label>
+                                Numer telefonu <input id="_PhoneNumber" asp-for="DonationContactPhoneNumber" type="text" name="DonationContactPhoneNumber" />
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-group form-group--inline">
-                        <label> Miasto <input asp-for="DonationCity" type="text" name="DonationCity" /> </label>
-                    </div>
-                    <div class="form-group form-group--inline">
-                        <label>
-                            Kod pocztowy <input asp-for="DonationZipCode" type="text" name="DonationZipCode" />
-                        </label>
-                    </div>
-                    <div class="form-group form-group--inline">
-                        <label>
-                            Numer telefonu <input asp-for="DonationContactPhoneNumber" type="text" name="DonationContactPhoneNumber" />
-                        </label>
+                    <div class="form-section--column">
+                        <h4>Termin odbioru</h4>
+                        <div class="form-group form-group--inline">
+                            <label> Data <input id="_DonationPickUpDate" asp-for="DonationPickUpDate" type="date" name="DonationPickUpDate" value="@DateTime.Now.ToShortDateString()" /> </label>
+                        </div>
+                        <div class="form-group form-group--inline">
+                            <label> Godzina <input id="_DonationPickUpTime" asp-for="DonationPickUpTime" type="datetime-local" name="DonationPickUpTime" value="@DateTime.Now.ToShortTimeString()" /> </label>
+                        </div>
+                        <div class="form-group form-group--inline">
+                            <label>
+                                Uwagi dla kuriera
+                                <textarea id="_DonationPickUpComment" asp-for="DonationPickUpComment" name="DonationPickUpComment" rows="5"></textarea>
+
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="form-section--column">
-                    <h4>Termin odbioru</h4>
-                    <div class="form-group form-group--inline">
-                        <label> Data <input id="_DonationPickUpDate" asp-for="DonationPickUpDate" type="date" name="DonationPickUpDate" value="@DateTime.Now.ToShortDateString()" /> </label>
-                    </div>
-                    <div class="form-group form-group--inline">
-                        <label> Godzina <input id="_DonationPickUpTime" asp-for="DonationPickUpTime" type="datetime-local" name="DonationPickUpTime" value="@DateTime.Now.ToShortTimeString()"/> </label>
-                    </div>
-                    <div class="form-group form-group--inline">
-                        <label>
-                            Uwagi dla kuriera
-                            <textarea id="_DonationPickUpComment" asp-for="DonationPickUpComment" name="DonationPickUpComment" rows="5"></textarea>
-                            
-                        </label>
-                    </div>
-                </div>
-            </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button id="summaryButton" type="button" class="btn next-step">Dalej</button>
@@ -151,19 +151,19 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text">4 worki</span>
+                                <span id="_Quantity" class="summary--text"></span>
                             </li>
 
                             @*@foreach (var item in Model.ChkItem)
-                        {
-                            <li id="IfChecked@(item.Id)" style="visibility:hidden">
-                                @item.Name
-                            </li>
-                        }*@
+                                {
+                                    <li id="IfChecked@(item.Id)" style="visibility:hidden">
+                                        @item.Name
+                                    </li>
+                                }*@
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text">Tak!</span>
+                                <span id="_Instytution" class="summary--text"></span>
                             </li>
                         </ul>
                     </div>
@@ -171,17 +171,17 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="Li_Street"></li>
+                                <li id="Li_City"></li>
+                                <li id="Li_ZipCode"></li>
+                                <li id="Li_Phone"></li>
                             </ul>
                         </div>
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li id="Li_Date">13/12/2018</li>
-                                <li id="Li_Time">15:40</li>
+                                <li id="Li_Date"></li>
+                                <li id="Li_Time"></li>
                                 <li id="Li_Comment"></li>
                             </ul>
                         </div>
@@ -193,7 +193,7 @@
                 </div>
             </div>
         </form>
-</div>
+    </div>
 </section>
 @*<script src="js/app.js"></script>*@
 <script>
@@ -206,14 +206,48 @@
         var _com = document.getElementById("_DonationPickUpComment");
         var date = document.getElementById("Li_Date");
         var time = document.getElementById("Li_Time");
-        var com = document.getElementById("Li_Comment"); 
+        var com = document.getElementById("Li_Comment");
+
+        var _street = document.getElementById("_DonationStreet");
+        var street = document.getElementById("Li_Street");
+        var _city = document.getElementById("_DonationCity");
+        var city = document.getElementById("Li_City");
+        var _zipCode = document.getElementById("_DonationZipCode");
+        var zipCode = document.getElementById("Li_ZipCode");
+        var _phone = document.getElementById("_PhoneNumber");
+        var phone = document.getElementById("Li_Phone");
+
+        var _donationQuantity = document.getElementById("_DonationQt");
+        var Quantity = document.getElementById("_Quantity");
 
         summary.addEventListener("click", function (e) {
             date.innerText = _date.value;
             time.innerText = _time.value;
             com.innerText = _com.value;
+
+            street.innerText = _street.value;
+            city.innerText = _city.value;
+            zipCode.innerText = _zipCode.value;
+            phone.innerText = _phone.value;
+
+            Quantity.innerText = "Liczba worków: " + _donationQuantity.value;
         })
 
+        var _Instytution = document.getElementById("_Instytution");
+        var radios = document.querySelectorAll('input[type=radio][name="DonationInstitutionName"]');
+
+        function changeHandler(event) {
+            _Instytution.innerText = this.value;
+        }
+
+        Array.prototype.forEach.call(radios, function (radio) {
+            radio.addEventListener('click', changeHandler);
+        })
     })
 </script>
 
+
+<li id="Li_Street"></li>
+<li id="Li_City"></li>
+<li id="Li_ZipCode"></li>
+<li id="Li_Phone"></li>

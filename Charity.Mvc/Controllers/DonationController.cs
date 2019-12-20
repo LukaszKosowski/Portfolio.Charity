@@ -53,7 +53,7 @@ namespace Charity.Mvc.Controllers
 
             DonationViewModel donationViewModel = new DonationViewModel
             {
-                DonationQuantity = 42,
+                DonationQuantity = 1,
                 ChkItem = ToCheckBox(),
                 Categories = (List<Category>)_categoryService.GetAll(),
                 Institutions = _instytutionService.GetAll(),
