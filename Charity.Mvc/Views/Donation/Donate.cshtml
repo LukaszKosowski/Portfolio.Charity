@@ -123,10 +123,10 @@
                 <div class="form-section--column">
                     <h4>Termin odbioru</h4>
                     <div class="form-group form-group--inline">
-                        <label> Data <input asp-for="DonationPickUpDate" type="date" name="DonationPickUpDate" value="@DateTime.Now.ToShortDateString()" /> </label>
+                        <label> Data <input id="_DonationPickUpDate" asp-for="DonationPickUpDate" type="date" name="DonationPickUpDate" value="@DateTime.Now.ToShortDateString()" /> </label>
                     </div>
                     <div class="form-group form-group--inline">
-                        <label> Godzina <input asp-for="DonationPickUpTime" type="datetime-local" name="DonationPickUpTime" value="@DateTime.Now.ToShortTimeString()"/> </label>
+                        <label> Godzina <input id="_DonationPickUpTime" asp-for="DonationPickUpTime" type="datetime-local" name="DonationPickUpTime" value="@DateTime.Now.ToShortTimeString()"/> </label>
                     </div>
                     <div class="form-group form-group--inline">
                         <label>
@@ -139,7 +139,7 @@
             </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button id="summaryButton" type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
             <!-- STEP 6 -->
@@ -180,9 +180,9 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li></li>
+                                <li id="Li_Date">13/12/2018</li>
+                                <li id="Li_Time">15:40</li>
+                                <li id="Li_Comment"></li>
                             </ul>
                         </div>
                     </div>
@@ -195,5 +195,25 @@
         </form>
 </div>
 </section>
-<script src="js/app.js"></script>
+@*<script src="js/app.js"></script>*@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var summary = document.getElementById("summaryButton");
+
+        var _date = document.getElementById("_DonationPickUpDate");
+        var _time = document.getElementById("_DonationPickUpTime");
+        var _com = document.getElementById("_DonationPickUpComment");
+        var date = document.getElementById("Li_Date");
+        var time = document.getElementById("Li_Time");
+        var com = document.getElementById("Li_Comment"); 
+
+        summary.addEventListener("click", function (e) {
+            date.innerText = _date.value;
+            time.innerText = _time.value;
+            com.innerText = _com.value;
+        })
+
+    })
+</script>
 
