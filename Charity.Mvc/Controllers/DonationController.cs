@@ -25,22 +25,22 @@ namespace Charity.Mvc.Controllers
             _donationService = donationService;
         }
 
-        public List<CheckBoxModel> ToCheckBox()
-        {
-            List<CheckBoxModel> chkItem = new List<CheckBoxModel>();
-            List<Category> CategoryList = _categoryService.GetAll().ToList();
+        //public List<CheckBoxModel> ToCheckBox()
+        //{
+        //    List<CheckBoxModel> chkItem = new List<CheckBoxModel>();
+        //    List<Category> CategoryList = _categoryService.GetAll().ToList();
 
-            for (int i = 0; i < CategoryList.Count; i++)
-            {
-                chkItem.Add(new CheckBoxModel()
-                {
-                    Id = CategoryList[i].Id,
-                    Name = CategoryList[i].Name,
-                    IsChecked = false
-                });
-            }
-            return chkItem;
-        }
+        //    for (int i = 0; i < CategoryList.Count; i++)
+        //    {
+        //        chkItem.Add(new CheckBoxModel()
+        //        {
+        //            Id = CategoryList[i].Id,
+        //            Name = CategoryList[i].Name,
+        //            IsChecked = false
+        //        });
+        //    }
+        //    return chkItem;
+        //}
         [HttpGet]
         public IActionResult Donate()
         {          
@@ -54,7 +54,6 @@ namespace Charity.Mvc.Controllers
             DonationViewModel donationViewModel = new DonationViewModel
             {
                 DonationQuantity = 1,
-                ChkItem = ToCheckBox(),
                 Categories = (List<Category>)_categoryService.GetAll(),
                 Institutions = _instytutionService.GetAll(),
                 Instytucje = new SelectList(ListaKategorii)
@@ -75,7 +74,6 @@ namespace Charity.Mvc.Controllers
                 PickUpDate = donationModelView.DonationPickUpDate,
                 PickUpTime = donationModelView.DonationPickUpTime,
                 PickUpComment = donationModelView.DonationPickUpComment,
-                Categories = null,
                 Institutions = _instytutionService.Get(donationModelView.DonationInstitutionName)
             });
 

@@ -4,44 +4,34 @@ using Charity.Mvc.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Charity.Mvc.Migrations
 {
     [DbContext(typeof(CharityContext))]
-    partial class CharityContextModelSnapshot : ModelSnapshot
+    [Migration("20191220215736_Donate3")]
+    partial class Donate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Charity.Mvc.Models.CategoriesForDonations", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<int>("DonationId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CategoriesForDonation");
-                });
-
             modelBuilder.Entity("Charity.Mvc.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("IsChecked");
+                    b.Property<int?>("DonationId");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DonationId");
 
                     b.ToTable("Categories");
                 });
@@ -86,6 +76,13 @@ namespace Charity.Mvc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Institutions");
+                });
+
+            modelBuilder.Entity("Charity.Mvc.Models.Category", b =>
+                {
+                    b.HasOne("Charity.Mvc.Models.Donation")
+                        .WithMany("Categories")
+                        .HasForeignKey("DonationId");
                 });
 
             modelBuilder.Entity("Charity.Mvc.Models.Donation", b =>

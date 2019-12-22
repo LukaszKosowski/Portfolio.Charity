@@ -27,32 +27,51 @@
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                @for (var i = 0; i < Model.ChkItem.Count; i++)
+                @for (var i = 0; i < Model.Categories.Count; i++)
                 {
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="checkbox" name="DonationCategoryName" value="@Model.ChkItem[i].Name" asp-for="ChkItem[i].IsChecked" />
+                            <input type="checkbox" asp-for="Categories[i].IsChecked"/>
 
-                            <span class="checkbox"></span>
-                            <span class="description">@Model.ChkItem[i].Name</span>
+                            <span class="checkbox" value="@Model.Categories[i].Name"></span>
+                            <span class="description">@Model.Categories[i].Name</span>
 
-                            @*<input type="hidden" value="@Model.ChkItem[i].Name" asp-for="@Model.ChkItem[i].Id" />
-                            <input type="hidden" value="@Model.ChkItem[i].Name" asp-for="@Model.ChkItem[i].Name" />*@
+                            <input type="hidden" asp-for="@Model.Categories[i].Id" />
+                            <input type="hidden" asp-for="@Model.Categories[i].Name" />
+                            <input type="hidden" name="DonationCategoryName" value="@Model.Categories[i].IsChecked" />
                         </label>
                     </div>
                 }
 
+                @*@for (var i = 0; i < Model.ChkItem.Count; i++)
+        {
+            <div class="form-group form-group--checkbox">
+                <label>
+                    <input type="checkbox" asp-for="ChkItem[i].IsChecked" name="Names"/>
+
+                    <span name="@Model.ChkItem[i].Name" class="checkbox"></span>
+                    <span class="description">@Model.ChkItem[i].Name</span>
+
+                    <input type="hidden" asp-for="@Model.ChkItem[i].Id" />
+                    <input type="hidden" asp-for="@Model.ChkItem[i].Name" />
+                    <input type="hidden" name="DonationCategoryName" value="@Model.ChkItem[i].IsChecked" />
+                </label>
+            </div>
+        }*@
+
+
+
 
                 @*@for (var i = 0; i < Model.Categories.Count; i++)
-                    {
-                        <div class="form-group form-group--checkbox">
-                            <label>
-                                <input type="checkbox" value="Categories[i].Name" />
-                                <span class="checkbox"></span>
-                                <span class="description">@Model.Categories[i].Name</span>
-                            </label>
-                        </div>
-                    }*@
+        {
+            <div class="form-group form-group--checkbox">
+                <label>
+                    <input type="checkbox" value="Categories[i].Name" />
+                    <span class="checkbox"></span>
+                    <span class="description">@Model.Categories[i].Name</span>
+                </label>
+            </div>
+        }*@
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -220,7 +239,8 @@
         var _donationQuantity = document.getElementById("_DonationQt");
         var Quantity = document.getElementById("_Quantity");
 
-        var AllCheckBoxes = document.querySelectorAll('input[type=checkbox][name="DonationCategoryName"]');
+        var AllCheckBoxes = document.querySelectorAll('input[type=checkbox]');
+        var AllCheckSpans = document.querySelectorAll('span[class=description]');
 
         summary.addEventListener("click", function (e) {
             date.innerText = _date.value;
@@ -232,12 +252,13 @@
             zipCode.innerText = _zipCode.value;
             phone.innerText = _phone.value;
 
-            Quantity.innerText += "Liczba worków: " + _donationQuantity.value;
+            Quantity.innerText = "Liczba worków: " + _donationQuantity.value;
 
             var CategoryResoult = "";
             for (i = 0; i < AllCheckBoxes.length; i++) {
                 if (AllCheckBoxes[i].checked == true) {
-                    CategoryResoult += ' \r\n -' + AllCheckBoxes[i].value ;
+                    //var NameVal = AllCheckBoxes[i].nextSibling;
+                    CategoryResoult += ' \r\n -' + AllCheckSpans[i].innerText;
                 }
             }
 

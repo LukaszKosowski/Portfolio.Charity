@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace Charity.Mvc.Models
 {
-    public class Category
+    public class CategoriesForDonations
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public bool IsChecked { get; set; }
-
+        public int CategoryId { get; set; }
+        public int DonationId { get; set; }
     }
 }

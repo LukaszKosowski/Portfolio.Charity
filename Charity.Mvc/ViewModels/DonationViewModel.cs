@@ -26,18 +26,14 @@ namespace Charity.Mvc.ViewModels
 
         public string DonationInstitutionName { get; set; }
 
-
-
-        public List<CheckBoxModel> ChkItem { get; set; }
+        //public List<CheckBoxModel> ChkItem { get; set; }
         public IEnumerable<SelectListItem> Instytucje { get; set; }
-
     }
 
-    public class CheckBoxModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool IsChecked { get; set; }
-
-    }
+    //public class CheckBoxModel
+    //{
+    //    public int Id { get; set; }
+    //    public string Name { get; set; }
+    //    public bool IsChecked { get; set; }
+    //}
 }

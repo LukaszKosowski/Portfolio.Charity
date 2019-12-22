@@ -25,12 +25,17 @@ namespace Charity.Mvc.Services
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var donation = _context.Donations.SingleOrDefault(i => i.Id == id);
+            if (donation == null)
+                return false;
+
+            _context.Donations.Remove(donation);
+            return _context.SaveChanges() > 0;
         }
 
         public Donation Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Donations.SingleOrDefault(i => i.Id == id);
         }
 
         public IList<Donation> GetAll()
@@ -40,7 +45,8 @@ namespace Charity.Mvc.Services
 
         public bool Update(Donation donation)
         {
-            throw new NotImplementedException();
+            _context.Donations.Update(donation);
+            return _context.SaveChanges() > 0;
         }
     }
 }

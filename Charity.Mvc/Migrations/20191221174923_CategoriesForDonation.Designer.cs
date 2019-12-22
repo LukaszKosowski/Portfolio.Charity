@@ -4,40 +4,26 @@ using Charity.Mvc.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Charity.Mvc.Migrations
 {
     [DbContext(typeof(CharityContext))]
-    partial class CharityContextModelSnapshot : ModelSnapshot
+    [Migration("20191221174923_CategoriesForDonation")]
+    partial class CategoriesForDonation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Charity.Mvc.Models.CategoriesForDonations", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<int>("DonationId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CategoriesForDonation");
-                });
-
             modelBuilder.Entity("Charity.Mvc.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsChecked");
 
                     b.Property<string>("Name");
 
@@ -51,7 +37,11 @@ namespace Charity.Mvc.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<string>("City");
+
+                    b.Property<int>("DonationId");
 
                     b.Property<int?>("InstitutionsId");
 

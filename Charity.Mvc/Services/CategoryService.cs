@@ -26,12 +26,17 @@ namespace Charity.Mvc.Services
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var category = _context.Categories.SingleOrDefault(i => i.Id == id);
+            if (category == null)
+                return false;
+
+            _context.Categories.Remove(category);
+            return _context.SaveChanges() > 0;
         }
 
         public Category Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Categories.SingleOrDefault(i => i.Id == id);
         }
 
         public IList<Category> GetAll()
@@ -39,9 +44,10 @@ namespace Charity.Mvc.Services
             return _context.Categories.ToList();
         }
 
-        public bool Update(Category reccategoryipe)
+        public bool Update(Category category)
         {
-            throw new NotImplementedException();
+            _context.Categories.Update(category);
+            return _context.SaveChanges() > 0;
         }
     }
 }
