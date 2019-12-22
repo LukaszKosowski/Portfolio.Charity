@@ -15,14 +15,17 @@ namespace Charity.Mvc.Controllers
         private readonly IInstitutionSerwice _instytutionService;
         private readonly ICategoryService _categoryService;
         private readonly IDonationService _donationService;
+        private readonly ICategoriesForDonations _categoriesForDonation;
 
         public DonationController(IInstitutionSerwice instytutionService,
                                 ICategoryService categoryService,
-                                IDonationService donationService)
+                                IDonationService donationService,
+                                ICategoriesForDonations categoriesForDonation)
         {
             _instytutionService = instytutionService;
             _categoryService = categoryService;
             _donationService = donationService;
+            _categoriesForDonation = categoriesForDonation;
         }
 
         //public List<CheckBoxModel> ToCheckBox()
@@ -43,10 +46,10 @@ namespace Charity.Mvc.Controllers
         //}
         [HttpGet]
         public IActionResult Donate()
-        {          
+        {
             List<string> ListaKategorii = new List<string>();
 
-            foreach(Institution c in _instytutionService.GetAll())
+            foreach (Institution c in _instytutionService.GetAll())
             {
                 ListaKategorii.Add(c.Name);
             }
@@ -65,24 +68,46 @@ namespace Charity.Mvc.Controllers
         [HttpPost]
         public IActionResult Donate(DonationViewModel donationModelView)
         {
-            _donationService.Create(new Donation
+            var newDonation = new Donation
             {
                 Street = donationModelView.DonationStreet,
-                Quantity = donationModelView.DonationQuantity,                
+                Quantity = donationModelView.DonationQuantity,
                 City = donationModelView.DonationCity,
                 ZipCode = donationModelView.DonationZipCode,
                 PickUpDate = donationModelView.DonationPickUpDate,
                 PickUpTime = donationModelView.DonationPickUpTime,
                 PickUpComment = donationModelView.DonationPickUpComment,
                 Institutions = _instytutionService.Get(donationModelView.DonationInstitutionName)
-            });
+            };
 
-            var x = donationModelView.DonationQuantity;
+            _donationService.Create(newDonation);
+
+            foreach (Category cat in donationModelView.Categories)
+            {
+                if (cat.IsChecked)
+                {
+                    _categoriesForDonation.Create(new CategoriesForDonations
+                    {
+                        CategoryId = cat.Id,
+                        DonationId = newDonation.Id
+                    });
+                }
+            }
+
+
+            //var x = donationModelView.DonationQuantity;
 
             //_donationService.Create(new Donation());
 
 
+            return RedirectToAction("Summary");
+        }
+
+
+        public IActionResult Summary()
+        {
             return View();
         }
     }
+        
 }

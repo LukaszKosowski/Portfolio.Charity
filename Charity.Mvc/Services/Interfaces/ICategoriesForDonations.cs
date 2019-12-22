@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Charity.Mvc.Services.Interfaces
 {
-    interface ICategoriesForDonations
+    public interface ICategoriesForDonations
     {
         bool Create(CategoriesForDonations category);
         bool Delete(int id);

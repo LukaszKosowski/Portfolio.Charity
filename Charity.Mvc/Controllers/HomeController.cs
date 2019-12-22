@@ -8,22 +8,48 @@ using Charity.Mvc.Models;
 using Charity.Mvc.Context;
 using Charity.Mvc.Services;
 using Charity.Mvc.Services.Interfaces;
+using Charity.Mvc.ViewModels;
 
 namespace Charity.Mvc.Controllers
 {
 	public class HomeController : Controller
 	{
         private readonly IInstitutionSerwice _instytutionService;
+        private readonly ICategoryService _categoryService;
+        private readonly IDonationService _donationService;
+        private readonly ICategoriesForDonations _categoriesForDonation;
 
-        public HomeController(IInstitutionSerwice instytutionService)
+        public HomeController(IInstitutionSerwice instytutionService,
+                                ICategoryService categoryService,
+                                IDonationService donationService,
+                                ICategoriesForDonations categoriesForDonation)
         {
             _instytutionService = instytutionService;
+            _categoryService = categoryService;
+            _donationService = donationService;
+            _categoriesForDonation = categoriesForDonation;
         }
 
         public IActionResult Index()
         {
-            var institutions = _instytutionService.GetAll();
-            return View(institutions);
+            IEnumerable<Donation> AllDonations = _donationService.GetAll();
+            int qq = 0;
+            var ii = AllDonations.Select(x => x.Id).Distinct();
+
+            foreach(Donation d in AllDonations)
+            {
+                qq += d.Quantity;
+                //ii += d.Institutions.Id;
+            }
+
+            IndexModel indexModel = new IndexModel
+            {
+                Quantity = qq,
+                AllInstitutions = ii.Count(),
+                InstitutionList  = _instytutionService.GetAll()
+            };
+
+            return View(indexModel);
         }
 
         public IActionResult Error()
